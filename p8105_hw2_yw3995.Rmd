@@ -243,3 +243,9 @@ combine_df =
 
 * Conclusion
   * The "combine_df" dataset have **`r nrow(combine_df)`** observations and **`r ncol(combine_df)`** variables of the basic informations of participants with Mild Cognitive Impairment (MCI), which contains **`r names(combine_df)`**.
+
+## Export the result as a CSV
+
+```{r}
+write.csv(combine_df, "./results/combine_mci.csv")
+```
