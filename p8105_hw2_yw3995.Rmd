@@ -139,3 +139,14 @@ Gwynnda_trash$year = as.character(Gwynnda_trash$year)
 
 Gwynnda_trash
 ```
+
+## Merging
+
+```{r, message = FALSE}
+trash_wheel = 
+  bind_rows(Mr_trash, Professor_trash, Gwynnda_trash) %>% 
+  janitor::clean_names() %>% 
+  select(name, everything()) 
+
+trash_wheel
+```
