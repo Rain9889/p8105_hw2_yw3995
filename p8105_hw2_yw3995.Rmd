@@ -78,3 +78,10 @@ merge_df =
   arrange(year) %>% 
   relocate(year)
 ```
+
+* Conclusion
+
+  * The dataset **"pols_df"** is about the date and the number of national politicians who are democratic or republican from **Jan. 1947** to **Jun. 2015**, which contains **`r names(pols_df)`** and the size of the dataset is **`r nrow (pols_df)`** rows * **`r ncol(pols_df)`** cols;
+  *  The dataset **"snp_df"** is about the date and values of Standard & Poor’s stock market index (S&P) from **Jan. 1950** to **Jul. 2015**, which contains **`r names(snp_df)`** and the size of the dataset is **`r nrow (snp_df)`** rows * **`r ncol(snp_df)`** cols;
+  *  The dataset **"unemployment_df"** is about the date and the percentage of unemployment from **Jan. 1948** to **Dec. 2015**, which contains **`r names(unemployment_df)`** and the size of the dataset is **`r nrow (unemployment_df)`** rows * **`r ncol(unemployment_df)`** cols;
+  * The dataset **"merge_df"** is the sum of the above three files, containing the number of national politicians, closing values of the S&P stock index, and the percentage of unemployed from **Jan. 1950** to **Jun. 2015**, which contains **`r names(merge_df)`** and the size of the dataset is **`r nrow (merge_df)`** rows * **`r ncol(merge_df)`** cols.
