@@ -193,7 +193,7 @@ MCI = filter(MCI_baseline, !(age_at_onset < 0))
   * The dataset of "MCI" have **`r nrow(MCI)`** observations and **`r ncol(MCI)`** variables of participants with Mild Cognitive Impairment (MCI), which contains **`r names(MCI)`**.
   
 ## The women in MCI_baseline dataset
-```{r}
+```{r, message = FALSE}
 total_women = filter(MCI_baseline, sex == "female") 
 
 total_women_carriers = filter(total_women, apoe4 == "carrier") 
@@ -207,3 +207,25 @@ total_women_carriers = filter(total_women, apoe4 == "carrier")
     * **`r mean (MCI_baseline$current_age)`**.
   * What proportion of women in the study are APOE4 carriers?
     * **`r (nrow (total_women_carriers)/nrow (total_women))*100` %**.
+  
+## Clean the dataset of longitudinally observed biomarker values
+
+```{r, message = FALSE}
+mci_amyloid = 
+  read_csv(file = "./data/mci_amyloid.csv", skip = 1) %>% 
+  janitor::clean_names() 
+  
+mci_amyloid_new = 
+  pivot_longer(mci_amyloid,
+    baseline:time_8,
+    names_to = "time",
+    values_to = "value") %>% 
+  rename(id = study_id) %>% 
+  na.omit(mci_amyloid) %>% 
+  filter(value != "Na")
+```
+
+* Discussion
+
+  * The important steps in the import process are **using "read_csv" to import data, cleaning column names, using "pivot_longer" to tidy data, using "rename" to change study_id to id, and delete NA values**;
+  * The dataset of "mci_amyloid" have **`r nrow(mci_amyloid_new)`** observations and **`r ncol(mci_amyloid_new)`** variables of information about id and 5 time intervals (in years) elapsed since the study baseline to the visit where biomarker Amyloid _ 42/40 ratio was measured, which contains **`r names(mci_amyloid_new)`**.
