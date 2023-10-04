@@ -1,0 +1,13 @@
+---
+title: "p8105_hw2_yw3995"
+author: "Yuxuan Wang"
+date: "2023-10-04"
+output: github_document
+---
+
+# Problem 0
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(readxl)
+```
