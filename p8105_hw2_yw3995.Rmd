@@ -16,7 +16,7 @@ library(readxl)
 
 ## Clean the data in pols-month.csv
 
-```{r, message=FALSE}
+```{r, message = FALSE}
 pols_df = 
   read_csv(file = "./data/pols-month.csv") %>% 
   janitor::clean_names() %>% 
@@ -30,7 +30,7 @@ pols_df
 
 ## Clean the data in snp.csv
 
-```{r, message=FALSE}
+```{r, message = FALSE}
 snp_df = 
   read_csv(file = "./data/snp.csv") %>% 
   janitor::clean_names() %>% 
@@ -45,4 +45,21 @@ snp_df =
   relocate(year, month)
 
 snp_df
+```
+
+## Clean the data in unemployment.csv
+
+```{r, message = FALSE}
+unemployment_df = 
+  read_csv(file = "./data/unemployment.csv") %>% 
+  janitor::clean_names() %>% 
+  pivot_longer(
+    jan:dec,
+    names_to = "month",
+    values_to = "percentage") %>% 
+  mutate(month = str_to_title(month))
+
+unemployment_df$year = as.character(unemployment_df$year)
+
+unemployment_df
 ```
