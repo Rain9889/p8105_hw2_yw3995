@@ -63,3 +63,18 @@ unemployment_df$year = as.character(unemployment_df$year)
 
 unemployment_df
 ```
+
+## Merging
+
+```{r, message = FALSE}
+polssnp_df = 
+  merge(pols_df, snp_df, by = c("year", "month")) %>% 
+  arrange(year, month)
+```
+
+```{r, message = FALSE}
+merge_df = 
+  merge(polssnp_df, unemployment_df, by = c("year", "month")) %>% 
+  arrange(year) %>% 
+  relocate(year)
+```
