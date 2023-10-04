@@ -233,3 +233,13 @@ mci_amyloid_new =
 * Conclusion
 
   * I find that some participants appear in only the baseline or amyloid datasets. The amyloid datasets have **`r (nrow(mci_amyloid)-nrow(MCI_baseline))`** more participants than the baseline datasets. Baseline datasets have participants ids from 1 to 483, but amyloid datasets have non-consecutive participant ids from 1 to 495.
+
+## Combining
+
+```{r}
+combine_df = 
+  merge(MCI, mci_amyloid_new, by = c( "id"))
+```
+
+* Conclusion
+  * The "combine_df" dataset have **`r nrow(combine_df)`** observations and **`r ncol(combine_df)`** variables of the basic informations of participants with Mild Cognitive Impairment (MCI), which contains **`r names(combine_df)`**.
