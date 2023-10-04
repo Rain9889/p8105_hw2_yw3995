@@ -24,5 +24,25 @@ pols_df =
   mutate(month = month.abb[as.numeric(month)]) %>% 
   mutate(president = ifelse(prez_dem == 0, "dem", "gop")) %>% 
   select(-prez_dem, -prez_gop, -day)
+
 pols_df
+```
+
+## Clean the data in snp.csv
+
+```{r, message=FALSE}
+snp_df = 
+  read_csv(file = "./data/snp.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(date = as.Date(date, format = "%m/%d/%y"),
+         date = as.Date(ifelse(date > Sys.Date(),
+                               format(date, "19%y-%m-%d"),
+                               format(date)))) %>% 
+  separate(date, into = c("year", "month", "day")) %>% 
+  mutate(month = month.abb[as.numeric(month)]) %>% 
+  select(-day) %>% 
+  arrange(year, month) %>% 
+  relocate(year, month)
+
+snp_df
 ```
