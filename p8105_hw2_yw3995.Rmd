@@ -207,3 +207,5 @@ total_women_carriers = filter(total_women, apoe4 == "carrier")
     * **`r mean (MCI_baseline$current_age)`**.
   * What proportion of women in the study are APOE4 carriers?
     * **`r (nrow (total_women_carriers)/nrow (total_women))*100` %**.
+
+
