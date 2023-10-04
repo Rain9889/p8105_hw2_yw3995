@@ -150,3 +150,23 @@ trash_wheel =
 
 trash_wheel
 ```
+
+## The Gwynnda dataset in July of 2021
+
+```{r, message = FALSE}
+total_ciga = filter(Gwynnda_trash, year == "2021", month == "July") 
+```
+
+* Conclusion
+
+  * The data **"Mr_trash"** is about the Mr. Trash Wheel sheet from **May. 2014** to **Jul. 2022**, which contains **`r names(Mr_trash)`** and the number of the observations is **`r nrow (Mr_trash)`**;
+  * The data **"Professor_trash"** is about the Professor Trash Wheel sheet from **Jan. 2017** to **Jul. 2022**, which contains **`r names(Professor_trash)`** and the number of the observations is **`r nrow (Professor_trash)`**;
+  * The data **"Gwynnda_trash"** is about the Gwynnda Trash Wheel sheet from **Jul. 2021** to **Jul. 2022**, which contains **`r names(Gwynnda_trash)`** and the number of the observations is **`r nrow (Gwynnda_trash)`**;
+  * The data **"trash_wheel"** is the sum of the above three files, which contains **`r names(trash_wheel)`** and the number of the observations is **`r nrow (trash_wheel)`**  from **May. 2014** to **Jul. 2022**.
+  
+* Questions
+
+  * What was the total weight of trash collected by Professor Trash Wheel? 
+    * **`r sum (Professor_trash $ weight_tons)`**.
+  * What was the total number of cigarette butts collected by Gwynnda in July of 2021?
+    * **`r sum (total_ciga $ cigarette_butts)`**.
