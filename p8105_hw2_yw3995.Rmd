@@ -181,10 +181,11 @@ MCI_baseline =
   janitor::clean_names() %>% 
   mutate(sex = ifelse(sex == 1, "male", "female")) %>% 
   mutate(apoe4 = ifelse(apoe4 == 1, "carrier", "non_carrier"))
-```
 
-```{r, message = FALSE}
-MCI = filter(MCI_baseline, !(age_at_onset < 0))
+MCI = 
+  filter(MCI_baseline, current_age < age_at_onset & age_at_onset != ".") %>% 
+  mutate(sex = ifelse(sex == 1, "male", "female")) %>% 
+  mutate(apoe4 = ifelse(apoe4 == 1, "carrier", "non_carrier"))
 ```
 
 * Discussion
@@ -204,9 +205,9 @@ total_women_carriers = filter(total_women, apoe4 == "carrier")
   * How many participants were recruited, and of these how many develop MCI? 
     * **`r nrow (MCI_baseline)`** participants were recruited and **`r nrow (MCI)`** participants develp MCI.
   * What is the average baseline age? 
-    * **`r mean (MCI_baseline$current_age)`**.
+    * **`r round(mean(pull(MCI_baseline, current_age)))`**.
   * What proportion of women in the study are APOE4 carriers?
-    * **`r (nrow (total_women_carriers)/nrow (total_women))*100` %**.
+    * **`r round((nrow (total_women_carriers)/nrow (total_women))*100)` %**.
   
 ## Clean the dataset of longitudinally observed biomarker values
 
@@ -220,9 +221,7 @@ mci_amyloid_new =
     baseline:time_8,
     names_to = "time",
     values_to = "value") %>% 
-  rename(id = study_id) %>% 
-  na.omit(mci_amyloid) %>% 
-  filter(value != "Na")
+  rename(id = study_id)
 ```
 
 * Discussion
